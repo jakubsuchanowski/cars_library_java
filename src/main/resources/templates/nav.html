@@ -1,14 +1,20 @@
 <div th:fragment="navbar">
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="cars.html">Biblioteka samochodów</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="cars.html"> Lista samochodów <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="add_car.html">Dodaj nowy</a>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" th:href="@{/cars}">Biblioteka samochodów</a>
+        </div>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" th:href="@{/cars}">Lista samochodów</a></li>
+      </ul>
+    </div>
+        <div class="navbar-right">
+        <ul class="navbar-nav">
+          <li><a th:href="@{/cars/new}" class="btn btn-primary">Dodaj nowy</a>
+          </li>
+        </ul>
+        </div>
     </div>
 </nav>
 </div>

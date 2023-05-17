@@ -2,27 +2,37 @@ package com.js.cars_library_java;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarsService {
 
     @Autowired
     CarRepository carRepository;
-    public List<Car> getAllCars(){
+    public Iterable<Car> getAllCars(){
         return carRepository.findAll();
     }
-    public Car saveCar(Car car){
-        return carRepository.save(car);
+    public void saveCar(Car car){
+        carRepository.save(car);
     }
 
     public Car getCarById(Long id){
-        return carRepository.findById(id).get();
+         return carRepository.findById(id).get();
     }
-    public Car updateCar(Car car){
-        return carRepository.save(car);
+    public void updateCar(Long id, Car car){
+        Optional<Car> existCar = carRepository.findById(id);
+            existCar.get().setBrand(car.getBrand());
+            existCar.get().setModel(car.getModel());
+            existCar.get().setProductionYear(car.getProductionYear());
+            existCar.get().setPowerHp(car.getPowerHp());
+            existCar.get().setEngineCapacity(car.getEngineCapacity());
+            existCar.get().setFuelType(car.getFuelType());
+            existCar.get().setDrive(car.getDrive());
+            existCar.get().setTransmission(car.getTransmission());
+            existCar.get().setType(car.getType());
+            existCar.get().setDoorsNumber(car.getDoorsNumber());
+            carRepository.save(existCar.get());
     }
 
     public void deleteCar(Long id){

@@ -1,11 +1,11 @@
 package com.js.cars_library_java;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class CarsController {
@@ -25,11 +25,15 @@ public class CarsController {
         return "add_car";
     }
 
-    @PostMapping("/cars")
-    public String addCar(@ModelAttribute("car") Car car){
-        carsService.saveCar(car);
-        return "redirect:/cars";
-
+    @PostMapping("/cars/add")
+    public String addCar(@Valid Car car, BindingResult binding){
+        if (binding.hasErrors()) {
+            return "add_car";
+        }
+        else {
+            carsService.saveCar(car);
+            return "redirect:/cars";
+        }
     }
     @GetMapping("/cars/edit/{id}")
     public String showEditCarForm(@PathVariable Long id, Model model){
@@ -37,26 +41,18 @@ public class CarsController {
         return "edit_car";
     }
 
-    @PostMapping("/cars/{id}")
-    public String updateCar(@PathVariable Long id, @ModelAttribute("car") Car car, Model model){
-        Car existCar = carsService.getCarById(id);
-        existCar.setBrand(car.getBrand());
-        existCar.setModel(car.getModel());
-        carsService.updateCar(existCar);
+    @PostMapping("/cars/update/{id}")
+    public String updateCar(@PathVariable Long id, @Valid Car car, BindingResult binding){
+        if (binding.hasErrors()) {
+            return "edit_car";
+        }
+        carsService.updateCar(id, car);
         return "redirect:/cars";
     }
 
-    @GetMapping("/cars/{id}")
+    @GetMapping("/cars/delete/{id}")
     public String deleteCar(@PathVariable Long id){
         carsService.deleteCar(id);
         return "redirect:/cars";
     }
-
-    @GetMapping("/cars/details/{id}")
-    public String showCarDetails(@PathVariable Long id, Model model){
-        model.addAttribute("car",carsService.getCarById(id));
-        return "car_details";
-    }
-
-
 }

@@ -8,38 +8,40 @@
 </head>
 <body>
 <div th:replace="nav.html ::navbar"></div>
-<div class="row">
-    <h1>Biblioteka samochodów</h1>
-</div>
-<div class = "row">
-    <div class = "col-lg-3">
-        <a th:href="@{/cars/new}" class="btn btn-primary btn-sm mb-3">Dodaj samochód</a>
-    </div>
-</div>
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">#</th>
         <th scope="col">Marka</th>
         <th scope="col">Model</th>
+        <th scope="col">Rok produkcji</th>
+        <th scope="col">Moc [KM]</th>
+        <th scope="col">Pojemność [cm3]</th>
+        <th scope="col">Rodzaj paliwa</th>
+        <th scope="col">Rodzaj napędu</th>
+        <th scope="col">Skrzynia biegów</th>
+        <th scope="col">Typ nadwozia</th>
+        <th scope="col">Liczba drzwi</th>
         <th scope="col">Akcja</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "car : ${cars}">
-        <td th:text = "${car.id}"></td>
         <td th:text = "${car.brand}"></td>
         <td th:text = "${car.model}"></td>
+        <td th:text = "${car.productionYear}"></td>
+        <td th:text = "${car.powerHp}"></td>
+        <td th:text = "${car.engineCapacity}"></td>
+        <td th:text = "${car.fuelType}"></td>
+        <td th:text = "${car.drive}"></td>
+        <td th:text = "${car.transmission}"></td>
+        <td th:text = "${car.type}"></td>
+        <td th:text = "${car.doorsNumber}"></td>
         <td>
-            <a th:href="@{/cars/details/{id}(id=${car.id})}" class="btn btn-success">Szczegóły</a>
             <a th:href="@{/cars/edit/{id}(id=${car.id})}" class="btn btn-warning">Edytuj</a>
-            <a th:href="@{/cars/{id}(id=${car.id})}" class="btn btn-danger">Usuń</a>
+            <a th:href="@{/cars/delete/{id}(id=${car.id})}" class="btn btn-danger">Usuń</a>
         </td>
     </tr>
     </tbody>
 </table>
-
-
-
 </body>
 </html>

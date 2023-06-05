@@ -1,6 +1,4 @@
-package com.js.cars_library_java;
-
-import jakarta.annotation.Nullable;
+package com.js.cars_library_java.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;

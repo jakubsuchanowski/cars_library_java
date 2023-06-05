@@ -1,6 +1,5 @@
-package com.js.cars_library_java;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+package com.js.cars_library_java.repository;
+import com.js.cars_library_java.model.Car;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

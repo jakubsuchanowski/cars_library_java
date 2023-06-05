@@ -1,5 +1,7 @@
-package com.js.cars_library_java;
+package com.js.cars_library_java.service;
 
+import com.js.cars_library_java.model.Car;
+import com.js.cars_library_java.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
